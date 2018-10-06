@@ -20,7 +20,7 @@ public class downloadAdapter extends RecyclerView.Adapter<downloadAdapter.Viewho
 
     @Override
     public Viewholder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new Viewholder(LayoutInflater.from(context).inflate(R.layout.downloadlist_item,parent,false));
+        return new Viewholder(LayoutInflater.from(parent.getContext()).inflate(R.layout.downloadlist_item,parent,false));
     }
 
     @Override
