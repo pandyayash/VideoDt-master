@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailsActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lil"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:id="@+id/imge"
+            android:src="@color/colorPrimary"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:id="@+id/textst"
+            android:text="@string/app_name"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:drawableTop="@android:drawable/ic_media_play"
+            android:padding="20dp"
+            android:paddingLeft="20dp"
+            android:layout_margin="15dp"
+            android:background="@color/colorPrimaryDark"
+            android:id="@+id/playbut"
+            android:paddingRight="20dp"
+            android:text="Play"
+            android:textColor="#fff" />
+
+        <Button
+            android:id="@+id/downbut"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:background="@color/colorAccent"
+            android:drawableTop="@android:drawable/stat_sys_download"
+            android:padding="20dp"
+            android:text="Download"
+            android:textColor="#fff" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:layout_margin="10dp"
+        android:text="Show Download"
+        android:id="@+id/btndhowdownload"
+        android:textAllCaps="false"
+        android:textColor="@color/white"/>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
