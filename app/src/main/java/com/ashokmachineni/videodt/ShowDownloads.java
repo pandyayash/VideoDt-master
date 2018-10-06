@@ -1,8 +1,10 @@
 package com.ashokmachineni.videodt;
 
+import android.net.Uri;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -29,29 +31,33 @@ public class ShowDownloads extends AppCompatActivity {
 
     public void getFileList() {
         datalist = new ArrayList<>();
-        File downloadfolder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        File downloadfolder = getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
         File[] file = downloadfolder.listFiles();
-        Log.d("datalistsize",downloadfolder.list().toString());
-        if (file != null) {
+        Log.d("datalistsize", String.valueOf(file.length));
+        if (file != null || file.length>0) {
+
             //If the file available in these download folder then it shows file names in list
             for (int i = 0; i < file.length; i++) {
                 File getfile = file[i];
                 DownloadedData data = new DownloadedData();
-                data.setName(getfile.getName());
-                Log.d("Filename", data.getName());
+                data.setName(getfile.getName().toString());
+                data.setUri(Uri.fromFile(getfile.getAbsoluteFile()));
+                Log.d("Filename",data.getName().toString());
+                Log.d("filepath",getfile.getAbsolutePath());
                 datalist.add(data);
             }
             setadapter();
-        } else {
+        }
+        if (datalist.size()<1){
             recyclerView.setVisibility(View.GONE);
             nodata.setVisibility(View.VISIBLE);
         }
-
     }
 
     public void setadapter(){
         adapter=new downloadAdapter(datalist,this);
         recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
