@@ -1,40 +1,25 @@
-package com.ashokmachineni.videodt;
+package com.ashokmachineni.videodt.Activities;
 
-import android.Manifest;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Environment;
-import android.provider.Settings;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HurlStack;
-import com.android.volley.toolbox.Volley;
+import com.ashokmachineni.videodt.R;
 import com.bumptech.glide.Glide;
-
-import java.io.File;
-import java.util.Arrays;
 
 public class DetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button plabut, dowbut,showdownload;
+    Button plabut, dowbut, showdownload;
     String vidurl;
     String names, imaur;
     DownloadManager downloadManager;
@@ -56,7 +41,6 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         dowbut = findViewById(R.id.downbut);
         txtview = findViewById(R.id.textst);
         imgv = findViewById(R.id.imge);
-        showdownload=findViewById(R.id.btndhowdownload);
         preferences = getSharedPreferences("mydata", MODE_PRIVATE);
         names = preferences.getString("titles", null);
         if (names != null) {
@@ -71,7 +55,6 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     public void setonclick() {
         plabut.setOnClickListener(this);
         dowbut.setOnClickListener(this);
-        showdownload.setOnClickListener(this);
     }
 
     @Override
@@ -84,17 +67,13 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent);
                 break;
             case R.id.downbut:
-                download(vidurl,names);
-                break;
-            case R.id.btndhowdownload:
-                Intent intent1 = new Intent(this, ShowDownloads.class);
-                startActivity(intent1);
+                download(vidurl, names);
                 break;
         }
     }
 
     //Function to Download video
-    public void download(String url,String name) {
+    public void download(String url, String name) {
 
         downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
         Uri uri = Uri.parse(url);

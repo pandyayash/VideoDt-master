@@ -1,4 +1,4 @@
-package com.ashokmachineni.videodt;
+package com.ashokmachineni.videodt.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ashokmachineni.videodt.Activities.DetailsActivity;
+import com.ashokmachineni.videodt.Model.Jobs;
+import com.ashokmachineni.videodt.R;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;

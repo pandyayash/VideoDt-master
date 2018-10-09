@@ -1,4 +1,4 @@
-package com.ashokmachineni.videodt;
+package com.ashokmachineni.videodt.Model;
 
 import android.net.Uri;
 

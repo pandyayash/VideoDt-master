@@ -1,39 +1,51 @@
-package com.ashokmachineni.videodt;
+package com.ashokmachineni.videodt.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
-import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.ashokmachineni.videodt.Model.DownloadedData;
+import com.ashokmachineni.videodt.R;
+import com.ashokmachineni.videodt.Adapter.downloadAdapter;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class ShowDownloads extends AppCompatActivity {
+public class Fragment_Downloads extends android.support.v4.app.Fragment {
+    View rootview;
     RecyclerView recyclerView;
     ArrayList<DownloadedData> datalist;
     TextView nodata;
     downloadAdapter adapter;
     Context context;
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_downloads);
-        recyclerView = findViewById(R.id.recViewDownloads);
-        nodata = findViewById(R.id.nodata);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        rootview = inflater.inflate(R.layout.freagment_downloads, container, false);
+        context = getActivity();
+        findview();
+        return rootview;
+    }
+
+    public void findview() {
+        recyclerView = rootview.findViewById(R.id.recViewDownloads);
+        nodata = rootview.findViewById(R.id.nodata);
         getFileList();
-        context=this;
     }
 
     public void getFileList() {
         datalist = new ArrayList<>();
-        File downloadfolder = getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
+        File downloadfolder = context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
         File[] file = downloadfolder.listFiles();
         Log.d("datalistsize", String.valueOf(file.length));
         if (file != null || file.length > 0) {
@@ -55,11 +67,10 @@ public class ShowDownloads extends AppCompatActivity {
             nodata.setVisibility(View.VISIBLE);
         }
     }
-
     public void setadapter() {
         adapter = new downloadAdapter(datalist, context);
         recyclerView.setHasFixedSize(false);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }

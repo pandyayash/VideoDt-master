@@ -1,4 +1,4 @@
-package com.ashokmachineni.videodt;
+package com.ashokmachineni.videodt.Activities;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.ashokmachineni.videodt.Activities.DetailsActivity;
+import com.ashokmachineni.videodt.R;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.ExoPlayerFactory;
@@ -57,8 +59,14 @@ public class ExActivity extends AppCompatActivity {
         }*/
         intent = getIntent();
         if (intent != null) {
-            URL = intent.getStringExtra("urlex");
-            Log.v("video//", URL);
+            if (intent.hasExtra("flag")){
+                URL=intent.getStringExtra("uri");
+                Log.v("Video//",URL);
+            }else {
+                URL = intent.getStringExtra("urlex");
+                Log.v("video//", URL);
+            }
+
         } else {
             Toast.makeText(this, "Some Error occur. Please try again after some times", Toast.LENGTH_SHORT).show();
         }
@@ -70,8 +78,7 @@ public class ExActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(this, DetailsActivity.class);
-        startActivity(intent);
+        finish();
     }
 
     public void initializePlayer(String urlex) {
